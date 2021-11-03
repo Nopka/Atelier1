@@ -1,0 +1,14 @@
+<?php
+
+namespace application\model;
+class CommandeProduit extends \Illuminate\Database\Eloquent\Model{
+
+    protected $table= 'commande_produit';
+    protected $primaryKey= 'id';
+
+    public function produit(){
+       return $this->belongsTo('application\model\Produit','id_produit');                   
+    }
+
+ 
+}

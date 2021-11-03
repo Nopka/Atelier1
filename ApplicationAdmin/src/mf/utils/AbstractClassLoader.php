@@ -1,4 +1,5 @@
 <?php
+
 namespace mf\utils;
 
 abstract class AbstractClassLoader {
@@ -26,7 +27,7 @@ abstract class AbstractClassLoader {
      *  
      * Algorithme:
      *
-     * - transforme le non de la classe en un chemin vers le fichier 
+     * - transforme le nom de la classe en un chemin vers le fichier 
      *   de définition avec la methode $this->getFilename
      *
      * - ajoute le prefix pour avoir le chemin complet depuis la racine du

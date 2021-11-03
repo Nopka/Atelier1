@@ -5,9 +5,9 @@ namespace mf\view;
 abstract class AbstractView {
 
     static protected $style_sheets = []; /* un tableau de fichiers style */
-    static protected $app_title = "MF app Title"; /* un titre de document */
+    static protected $app_title    = "MF app Title"; /* un titre de document */
     
-    protected $data = null; /* les données nécessaires */
+    protected $data        = null; /* les données nécessaires */
     
     /* Constructeur 
      * 
@@ -78,7 +78,7 @@ abstract class AbstractView {
      *
      */
     
-    abstract protected function renderBody($selector, $message);
+    abstract protected function renderBody($selector);
     
     /* Méthodes render
      * 
@@ -97,10 +97,10 @@ abstract class AbstractView {
      *
      */
     
-    public function render($selector, $message=null){
+    public function render($selector){
         /* le titre du document */
         $title = self::$app_title;
-
+        
         /* les feuilles de style */
         $app_root = (new \mf\utils\HttpRequest())->root;
         $styles = '';
@@ -108,7 +108,7 @@ abstract class AbstractView {
             $styles .= '<link rel="stylesheet" href="'.$app_root.'/'.$file.'"> ';
 
         /* on appele la methode renderBody de la sous classe */
-        $body = $this->renderBody($selector, $message);
+        $body = $this->renderBody($selector);
         
 
         /* construire la structure de la page 
@@ -118,21 +118,21 @@ abstract class AbstractView {
          */
                 
         $html = <<<EOT
-        <!DOCTYPE html>
-        <html lang="fr">
-            <head>
-                <meta charset="utf-8">
-                <title>${title}</title>
-                ${styles}
-            </head>
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>${title}</title>
+	    ${styles}
+    </head>
 
-            <body>
-                
-            ${body}
+    <body>
+        
+       ${body}
 
-            </body>
-        </html>
-        EOT;
+    </body>
+</html>
+EOT;
 
         /* Affichage de la page 
          *
