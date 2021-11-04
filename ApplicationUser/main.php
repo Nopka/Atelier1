@@ -3,6 +3,7 @@
 
 use LeHangarLocal\model\Categorie;
 use LeHangarLocal\model\Produit;
+use LeHangarLocal\view\LeHangarView;
 use mf\router\Router;
 
 ini_set('display_errors', '1');
@@ -28,11 +29,14 @@ $db->bootEloquent();           /* établir la connexion */
 $loader = new mf\utils\ClassLoader('src');
 $loader->register();
 
-
+LeHangarView::addStyleSheet('/html/scss/style.css');
 $ctrl = new \LeHangarLocal\control\LeHangarController();
 
 $router = new Router();
-$router->addRoute('default','/home/','\LeHangarLocal\control\LeHangarController','viewHome');
+$router->addRoute('accueil','/accueil/','\LeHangarLocal\control\LeHangarController','viewHome');
+$router->setDefaultRoute('/accueil/');
+$router->addRoute('producteurs','/producteurs/','\LeHangarLocal\control\LeHangarController','viewProducteurs');
+$router->addRoute('panier','/panier/','\LeHangarLocal\control\LeHangarController','viewPanier');
 
 $router->run();
 
