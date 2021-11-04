@@ -1,8 +1,12 @@
 <?php
-    namespace LehangarLocal\model;
+    namespace LeHangarLocal\model;
     class Producteur extends \Illuminate\Database\Eloquent\Model {
-        protected $table      = "produteur";
+        protected $table      = "producteur";
         protected $primaryKey = "id";
-        protected $timestamps = false;
+        public $timestamps = false;
+
+        public function produits(){
+            return $this->hasMany('LeHangarLocal\model\Produit','id_producteur');
+        }
     }
 ?>

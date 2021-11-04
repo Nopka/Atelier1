@@ -2,7 +2,6 @@
 
 namespace mf\router;
 use mf\router\AbstractRouter as AbstractRouter;
-use tweeterapp\auth\TweeterAuthentification as TweeterAuthentification;
 
 class Router extends AbstractRouter {
 
@@ -10,8 +9,8 @@ class Router extends AbstractRouter {
         parent::__construct();
     }
 
-    public function addRoute($name, $url, $ctrl, $method, $level=TweeterAuthentification::ACCESS_LEVEL_NONE) {
-        $route = [ $ctrl, $method, $level ];
+    public function addRoute($name, $url, $ctrl, $method) {
+        $route = [ $ctrl, $method ];
         self::$routes[$url] = $route;
         self::$aliases[$name] = $url;
     }
@@ -38,22 +37,7 @@ class Router extends AbstractRouter {
 
     public function run() {
         $url = $this->http_req->path_info;
-        if(array_key_exists($url, self::$routes)) {
-            $requested_level = self::$routes[$url][2];
-            $auth = new TweeterAuthentification();
-
-            if($auth->checkAccessRight($requested_level)) {
-                $ctrl = new self::$routes[$url][0]();
-                $method = self::$routes[$url][1];
-                $ctrl->$method();
-            }
-            else {
-                self::executeRoute('default');
-            }
-        }
-        else {
-            self::executeRoute('default');
-        }
+        self::executeRoute('default');
     }
 
     public static function executeRoute($alias, $message=null) {

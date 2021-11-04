@@ -1,8 +1,14 @@
 <?php
-    namespace LehangarLocal\model;
-    class Categorie extends \Illuminate\Database\Eloquent\Model {
+namespace LeHangarLocal\model;
+
+
+class Categorie extends \Illuminate\Database\Eloquent\Model {
         protected $table      = "categorie";
         protected $primaryKey = "id";
-        protected $timestamps = false;
+        public $timestamps = false;
+
+        public function produits(){
+            return $this->hasMany('LeHangarLocal\model\Produit','id_categorie');
+        }
     }
 ?>
