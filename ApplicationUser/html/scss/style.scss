@@ -51,6 +51,7 @@ main {
             }
             p{
                 display: flex;
+                flex-direction: column;
                 justify-content: space-around;
                 @include l(4, 0);
                 @include m(4, 0);

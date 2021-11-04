@@ -25,6 +25,24 @@ class LeHangarController extends \mf\control\AbstractController{
                $vue->setAppTitle('Producteurs');
                $vue->render('renderProducteurs');
           }
+          public function viewCategorie(){
+               $request = new HttpRequest();
+               $categorie = $request->get;
+               $laCategorie = Categorie::select()->where('id','=',$categorie)->first();
+               $elementsCategorie =$laCategorie->produits()->get();
+               $vue = new LeHangarView($elementsCategorie);
+               $vue->setAppTitle("$laCategorie->nom");
+               $vue->render('renderUneCategorie');
+          }
+          public function viewElementsProducteur(){
+               $request = new HttpRequest();
+               $producteur = $request->get;
+               $leProducteur = Producteur::select()->where('id','=',$producteur)->first();
+               $elementsProducteur = $leProducteur->produits()->get();
+               $vue = new LeHangarView($elementsProducteur);
+               $vue->setAppTitle("$leProducteur->nom");
+               $vue->render('renderElementsProducteur');
+          }
      }
 
 ?>

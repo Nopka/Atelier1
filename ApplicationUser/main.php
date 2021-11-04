@@ -35,7 +35,9 @@ $ctrl = new \LeHangarLocal\control\LeHangarController();
 $router = new Router();
 $router->addRoute('accueil','/accueil/','\LeHangarLocal\control\LeHangarController','viewHome');
 $router->setDefaultRoute('/accueil/');
+$router->addRoute('elementsCategorie','/categorie/','\LeHangarLocal\control\LeHangarController','viewCategorie');
 $router->addRoute('producteurs','/producteurs/','\LeHangarLocal\control\LeHangarController','viewProducteurs');
+$router->addRoute('elementsProducteur','/producteur/','\LeHangarLocal\control\LeHangarController','viewElementsProducteur');
 $router->addRoute('panier','/panier/','\LeHangarLocal\control\LeHangarController','viewPanier');
 
 $router->run();

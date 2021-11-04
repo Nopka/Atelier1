@@ -36,11 +36,12 @@
                $lesCategories = $this->data;
                $viewCategorie = "<article><h2 id='titre_article'>Les différentes catégories de produits</h2>";
                foreach ($lesCategories as $categorie) {
+                    $uneCategorie = $route->urlFor('elementsCategorie', [['id', $categorie->id]]);
                     $viewCategorie .="
                          <section>
                               <img src='http://localhost/LP-CIASIE_dev/Ateliers/Atelier1/ApplicationUser/html/img/Poivrons-rouges.jpg' alt='image'>
                               <p>
-                                   $categorie->nom<br>
+                                   <a href=".$uneCategorie.">$categorie->nom</a>
                               </p>
                          </section>
                     ";
@@ -53,11 +54,15 @@
                $lesProducteurs = $this->data;
                $viewProducteurs ="<article><h2 id='titre_article'>Les différents producteurs</h2>";
                foreach ($lesProducteurs as $producteur) {
+                    $unProducteur = $route->urlFor('elementsProducteur',[['id',$producteur->id]]);
                     $viewProducteurs .="
                          <section>
                               <img src='http://localhost/LP-CIASIE_dev/Ateliers/Atelier1/ApplicationUser/html/img/images.png' alt='image'>
                               <p>
-                                   $producteur->nom<br>
+                                   <a href=".$unProducteur.">
+                                        $producteur->nom<br>
+                                        $producteur->localisation
+                                   </a>
                               </p>
                          </section>
                     ";
@@ -65,7 +70,44 @@
                $viewProducteurs .="</article>";
                return $viewProducteurs;
           }
+          private function renderUneCategorie(){
+               $elements = $this->data;
+               $elementsCategorie ="<article><h2 id='titre_article'>Les différents produits de la catégorie </h2>";
+               foreach ($elements as $unElement) {
+                    $elementsCategorie .= "
+                         <section>
+                              <img src='http://localhost/LP-CIASIE_dev/Ateliers/Atelier1/ApplicationUser/html/img/Poivrons-rouges.jpg' alt='image'>
+                              <p>
+                                   <div class='nomElement'>$unElement->nom</div>
+                                   <div class='descElement'>$unElement->description</div>
+                                   <div class='tarifElement'>$unElement->tarif_unitaire</div>
 
+                                   <div>$unElement->id_producteur</div>
+                              </p>
+                         </section>
+                    ";
+               }
+               return $elementsCategorie;
+          }
+          private function renderElementsProducteur(){
+               $elements = $this->data;
+               $elementsProducteur="<article><h2 id='titre_article'>Les différents produits du producteur </h2>";
+               foreach ($elements as $unElement) {
+                    $elementsProducteur .= "
+                         <section>
+                              <img src='http://localhost/LP-CIASIE_dev/Ateliers/Atelier1/ApplicationUser/html/img/Poivrons-rouges.jpg' alt='image'>
+                              <p>
+                                   <div class='nomElement'>$unElement->nom</div>
+                                   <div class='descElement'>$unElement->description</div>
+                                   <div class='tarifElement'>$unElement->tarif_unitaire</div>
+
+                                   <div>$unElement->id_producteur</div>
+                              </p>
+                         </section>
+                    ";
+               }
+               return $elementsProducteur;
+          }
           protected function renderBody($selector)
           {
                $header = $this->renderHeader();
@@ -78,6 +120,12 @@
                          break;
                     case 'renderProducteurs':
                          $content = $this->renderProducteurs();
+                         break;
+                    case 'renderUneCategorie':
+                         $content = $this->renderUneCategorie();
+                         break;
+                    case 'renderElementsProducteur':
+                         $content = $this->renderElementsProducteur();
                          break;
                }
                $body = <<<EOT
