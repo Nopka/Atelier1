@@ -3,7 +3,10 @@
 #titre {
     text-align: center;
     background-color: #417B5A;
-    color:white;
+    color:whitesmoke;
+}
+html{
+    background-color: whitesmoke;
 }
 
 main {
@@ -28,37 +31,31 @@ main {
             @include m(6, 0);
             @include s(6, 0, 0);
             text-align: center;
+            color: #502419;
         }
         section {
             border: 2px solid;
             border-color: #502419;
             background-color: #B3D89C;
             border-radius: 10px;
-            @include grid;
             @include l(2, 0);
             @include m(3, 0);
             @include s(6, 0, 0);
+            @include grid;
             img{
                 border-radius: 10px;
-                @include l(2,0);
-                @include m(2,0);
-                @include s(2,0,0);
+                @include l(2, 0);
+                @include m(2, 0);
+                @include s(2, 0, 0);
                 width: 100%;
             }
             p{
                 display: flex;
                 justify-content: space-around;
-                @include l(4,0);
-                @include m(4,0);
-                @include s(4,0,0);
+                @include l(4, 0);
+                @include m(4, 0);
+                @include s(4, 0, 0);
             }
         }
     }
 }
-
-// section {
-//     border: 1px solid;
-//     img {
-//         width: 10%;
-//     }
-// }
