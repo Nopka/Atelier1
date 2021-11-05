@@ -40,7 +40,7 @@
                     $uneCategorie = $route->urlFor('elementsCategorie', [['id', $categorie->id]]);
                     $viewCategorie .="
                          <section>
-                              <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'>
+                              <img src='".$http_req->root."/html/img/".$categorie->nom.".jpg' alt='image'>
                               <div>
                                    <a href=".$uneCategorie.">$categorie->nom</a>
                               </div>
@@ -82,11 +82,12 @@
                     $ajouterPanier = $route->urlFor('elementsCategorie',[['id',$idCategorie],['id_element',$unElement->id]]);
                     $elementsCategorie .= "
                          <section>
-                              <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'/>
+                              <img src='".$http_req->root."/html/img/".$unElement->nom.".jpg' alt='image'/>
                               <div>
                                    <div class='nomElement'>$unElement->nom</div>
                                    <div class='descElement'>$unElement->description</div>
                                    <div class='tarifElement'>$unElement->tarif_unitaire</div>
+                                   <div class='unite'>$unElement->unite</div>
                                    <form class='formulairePanier' action=".$ajouterPanier." method='POST'>
                                         <input name='quantite' type='number' value='0'></input>
                                         <button type='submit' name='submit'>Ajouter au Panier</button>
@@ -112,11 +113,12 @@
                     $ajouterPanier = $route->urlFor('elementsProducteur',[['id',$idProducteur],['id_element',$unElement->id]]);
                     $elementsProducteur .= "
                          <section>
-                              <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'>
+                              <img src='".$http_req->root."/html/img/".$unElement->nom.".jpg' alt='image'>
                               <div>
                                    <div class='nomElement'>$unElement->nom</div>
                                    <div class='descElement'>$unElement->description</div>
                                    <div class='tarifElement'>$unElement->tarif_unitaire</div>
+                                   <div class='unite'>$unElement->unite</div>
                                    <form class='formulairePanier' action=".$ajouterPanier." method='POST'>
                                         <input name='quantite' type='number' value='0'></input>
                                         <button type='submit' name='submit'>Ajouter au Panier</button>
@@ -138,13 +140,14 @@
                     $tarif_unitaire = floatval($unElement[0]["tarif_unitaire"]);
                     $quantite = $unElement[1];
                     $supprimerPanier = $route->urlFor('panier',[['id',$id]]);
+                    $unite = $unElement[0]["unite"];
                     $elementsPanier .= "
                          <section>
-                              <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'>
+                              <img src='".$http_req->root."/html/img/".$unElement[0]['nom'].".jpg' alt='image'>
                               <div>
                                    <h3 class='nomElement'>".$unElement[0]["nom"]."</h3>
                                    <div class='descElement'>".$unElement[0]["description"]."</div>
-                                   <div class='tarifElement'>".$tarif_unitaire." &#8364/unité</div>
+                                   <div class='tarifElement'>".$tarif_unitaire." &#8364/".$unite."</div>
                                    <div class=''>Nombre : ".$quantite."</div>
                                    <div class=''>".$tarif_unitaire*$quantite." &#8364</div>
                                    <a href=".$supprimerPanier."><button>Retirer</button></a>

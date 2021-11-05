@@ -37,7 +37,7 @@ class LeHangarController extends \mf\control\AbstractController{
                     $idProduit = filter_var($_GET['id_element'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $quantite = filter_var($_POST['quantite'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $produit = $elementsCategorie->find($idProduit);
-                    Panier::ajouterPanier($idProduit,["nom" => $produit->nom,"description" => $produit->description,"tarif_unitaire" => $produit->tarif_unitaire],$quantite);
+                    Panier::ajouterPanier($idProduit,["nom" => $produit->nom,"description" => $produit->description,"tarif_unitaire" => $produit->tarif_unitaire, "unite" => $produit->unite],$quantite);
                }
                $vue = new LeHangarView($elementsCategorie);
                $vue->setAppTitle("$laCategorie->nom");
