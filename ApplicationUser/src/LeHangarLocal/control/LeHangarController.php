@@ -52,18 +52,23 @@ class LeHangarController extends \mf\control\AbstractController{
                     $produit = $elementsProducteur->find($idProduit);
                     Panier::ajouterPanier($idProduit,["nom" => $produit->nom,"description" => $produit->description,"tarif_unitaire" => $produit->tarif_unitaire],$quantite);
                }
-               $vue = new LeHangarView($elementsProducteur);
+               $vue = new LeHangarView($elementsProducteur,$leProducteur);
                $vue->setAppTitle("$leProducteur->nom");
                $vue->render('renderElementsProducteur');
           }
 
           public function viewPanier() {
                $request = new HttpRequest();
+               if (isset($_GET['id'])){
+                    $id = filter_var($request->get['id'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    Panier::supprimerDuPanier($id);
+               }
                $list_produits = Panier::GetAllProduits();
                $vue = new LeHangarView($list_produits);
                $vue->setAppTitle("Panier");
                $vue->render('renderPanier');
           }
+          
      }
 
 ?>

@@ -75,27 +75,27 @@ main article {
   }
 }
 
-main article #titre_article {
+main article .titre_article {
   text-align: center;
   color: #502419;
 }
 
 @media only screen and (min-width: 1000px) {
-  main article #titre_article {
+  main article .titre_article {
     grid-column: span 6;
     margin-left: 0%;
   }
 }
 
 @media only screen and (min-width: 500px) and (max-width: 999px) {
-  main article #titre_article {
+  main article .titre_article {
     grid-column: span 6;
     margin-left: 0%;
   }
 }
 
 @media only screen and (max-width: 499px) {
-  main article #titre_article {
+  main article .titre_article {
     grid-column: span 6;
     margin-left: 0%;
   }

@@ -35,7 +35,7 @@
                $route = new Router();
                $http_req = new HttpRequest();
                $lesCategories = $this->data;
-               $viewCategorie = "<article><h2 id='titre_article'>Les différentes catégories de produits</h2>";
+               $viewCategorie = "<article><h2 class='titre_article'>Les différentes catégories de produits</h2>";
                foreach ($lesCategories as $categorie) {
                     $uneCategorie = $route->urlFor('elementsCategorie', [['id', $categorie->id]]);
                     $viewCategorie .="
@@ -54,7 +54,7 @@
                $route = new Router();
                $http_req = new HttpRequest();
                $lesProducteurs = $this->data;
-               $viewProducteurs ="<article><h2 id='titre_article'>Les différents producteurs</h2>";
+               $viewProducteurs ="<article><h2 class='titre_article'>Les différents producteurs</h2>";
                foreach ($lesProducteurs as $producteur) {
                     $unProducteur = $route->urlFor('elementsProducteur',[['id',$producteur->id]]);
                     $viewProducteurs .="
@@ -76,7 +76,7 @@
                $route = new Router();
                $http_req = new HttpRequest();
                $elements = $this->data;
-               $elementsCategorie ="<article><h2 id='titre_article'>Les différents produits de la catégorie </h2>";
+               $elementsCategorie ="<article><h2 class='titre_article'>Les différents produits de la catégorie </h2>";
                $idCategorie = filter_var($_GET['id'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                foreach ($elements as $unElement) {
                     $ajouterPanier = $route->urlFor('elementsCategorie',[['id',$idCategorie],['id_element',$unElement->id]]);
@@ -101,8 +101,13 @@
                $route = new Router();
                $http_req = new HttpRequest();
                $elements = $this->data;
-               $elementsProducteur="<article><h2 id='titre_article'>Les différents produits du producteur </h2>";
+               $elementsProducteur="<article>
+               <h2 class='titre_article'>Informations sur le producteur</h2>
+               
+               <h2 class='titre_article'>Les différents produits du producteur </h2>";
                $idProducteur = filter_var($_GET['id'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+               
+               
                foreach ($elements as $unElement) {
                     $ajouterPanier = $route->urlFor('elementsProducteur',[['id',$idProducteur],['id_element',$unElement->id]]);
                     $elementsProducteur .= "
@@ -127,10 +132,11 @@
                $route = new Router();
                $http_req = new HttpRequest();
                $elements = $this->data;
-               $elementsProducteur="<article><h2 id='titre_article'>Les articles du panier</h2>";
-               foreach ($elements as $unElement) {
+               $elementsProducteur="<article><h2 class='titre_article'>Les articles du panier</h2>";
+               foreach ($elements as $id => $unElement) {
                     $tarif_unitaire = floatval($unElement[0]["tarif_unitaire"]);
                     $quantite = $unElement[1];
+                    $supprimerPanier = $route->urlFor('panier',[['id',$id]]);
                     $elementsProducteur .= "
                          <section>
                               <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'>
@@ -140,6 +146,7 @@
                                    <div class='tarifElement'>".$tarif_unitaire." &#8364/unité</div>
                                    <div class=''>Nombre : ".$quantite."</div>
                                    <div class=''>".$tarif_unitaire*$quantite." &#8364</div>
+                                   <a href=".$supprimerPanier."><button>Retirer</button></a>
                               </div>
                          </section>
                     ";

@@ -26,7 +26,7 @@ main {
         @include l(6, 0);
         @include m(6, 0);
         @include s(6, 0);
-        #titre_article {
+        .titre_article {
             @include l(6, 0);
             @include m(6, 0);
             @include s(6, 0);
