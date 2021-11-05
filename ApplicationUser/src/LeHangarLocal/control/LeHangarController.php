@@ -28,13 +28,14 @@ class LeHangarController extends \mf\control\AbstractController{
           }
           public function viewCategorie(){
                $request = new HttpRequest();
-               $categorie = $request->get['id'];
+               $categorie = filter_var($request->get['id'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                $laCategorie = Categorie::select()->where('id','=',$categorie)->first();
-               $elementsCategorie =$laCategorie->produits()->get();
+               $elementsCategorie = $laCategorie->produits()->get();
                if (isset($_POST['quantite']) and isset($_GET['id_element'])){
                     $idProduit = filter_var($_GET['id_element'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $quantite = filter_var($_POST['quantite'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    Panier::ajouterPanier($idProduit,$quantite);
+                    $produit = $elementsCategorie->find($idProduit);
+                    Panier::ajouterPanier($idProduit,["nom" => $produit->nom,"description" => $produit->description,"tarif_unitaire" => $produit->tarif_unitaire],$quantite);
                }
                $vue = new LeHangarView($elementsCategorie);
                $vue->setAppTitle("$laCategorie->nom");
@@ -42,12 +43,20 @@ class LeHangarController extends \mf\control\AbstractController{
           }
           public function viewElementsProducteur(){
                $request = new HttpRequest();
-               $producteur = $request->get;
+               $producteur = filter_var($request->get['id'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                $leProducteur = Producteur::select()->where('id','=',$producteur)->first();
                $elementsProducteur = $leProducteur->produits()->get();
                $vue = new LeHangarView($elementsProducteur);
                $vue->setAppTitle("$leProducteur->nom");
                $vue->render('renderElementsProducteur');
+          }
+
+          public function viewPanier() {
+               $request = new HttpRequest();
+               $list_produits = Panier::GetAllProduits();
+               $vue = new LeHangarView($list_produits);
+               $vue->setAppTitle("Panier");
+               $vue->render('renderPanier');
           }
      }
 

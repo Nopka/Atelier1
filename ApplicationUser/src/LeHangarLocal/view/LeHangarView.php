@@ -77,7 +77,7 @@
                $http_req = new HttpRequest();
                $elements = $this->data;
                $elementsCategorie ="<article><h2 id='titre_article'>Les différents produits de la catégorie </h2>";
-               $idCategorie = $_GET['id'];
+               $idCategorie = filter_var($_GET['id'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                foreach ($elements as $unElement) {
                     $ajouterPanier = $route->urlFor('elementsCategorie',[['id',$idCategorie],['id_element',$unElement->id]]);
                     $elementsCategorie .= "
@@ -117,6 +117,31 @@
                }
                return $elementsProducteur;
           }
+
+          private function renderPanier() {
+               $route = new Router();
+               $http_req = new HttpRequest();
+               $elements = $this->data;
+               $elementsProducteur="<article><h2 id='titre_article'>Les articles du panier</h2>";
+               foreach ($elements as $unElement) {
+                    $tarif_unitaire = floatval($unElement[0]["tarif_unitaire"]);
+                    $quantite = $unElement[1];
+                    $elementsProducteur .= "
+                         <section>
+                              <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'>
+                              <div>
+                                   <h3 class='nomElement'>".$unElement[0]["nom"]."</h3>
+                                   <div class='descElement'>".$unElement[0]["description"]."</div>
+                                   <div class='tarifElement'>".$tarif_unitaire." &#8364/unité</div>
+                                   <div class=''>Nombre : ".$quantite."</div>
+                                   <div class=''>".$tarif_unitaire*$quantite." &#8364</div>
+                              </div>
+                         </section>
+                    ";
+               }
+               return $elementsProducteur;
+          }
+
           protected function renderBody($selector)
           {
                $header = $this->renderHeader();
@@ -135,6 +160,9 @@
                          break;
                     case 'renderElementsProducteur':
                          $content = $this->renderElementsProducteur();
+                         break;
+                    case 'renderPanier':
+                         $content = $this->renderPanier();
                          break;
                }
                $body = <<<EOT
