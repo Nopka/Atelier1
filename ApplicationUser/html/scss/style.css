@@ -17,27 +17,27 @@ main {
 }
 
 @media only screen and (min-width: 1000px) {
-  main #menu {
+  main > #menu {
     grid-column: span 6;
     margin-left: 0%;
   }
 }
 
 @media only screen and (min-width: 500px) and (max-width: 999px) {
-  main #menu {
+  main > #menu {
     grid-column: span 6;
     margin-left: 0%;
   }
 }
 
 @media only screen and (max-width: 499px) {
-  main #menu {
+  main > #menu {
     grid-column: span 6;
     margin-left: 0%;
   }
 }
 
-main #menu ul {
+main > #menu ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -46,7 +46,7 @@ main #menu ul {
   list-style: none;
 }
 
-main article {
+main > article {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[6];
@@ -55,53 +55,53 @@ main article {
 }
 
 @media only screen and (min-width: 1000px) {
-  main article {
+  main > article {
     grid-column: span 6;
     margin-left: 0%;
   }
 }
 
 @media only screen and (min-width: 500px) and (max-width: 999px) {
-  main article {
+  main > article {
     grid-column: span 6;
     margin-left: 0%;
   }
 }
 
 @media only screen and (max-width: 499px) {
-  main article {
+  main > article {
     grid-column: span 6;
     margin-left: 0%;
   }
 }
 
-main article .titre_article {
+main > article > .titre_article {
   text-align: center;
   color: #502419;
 }
 
 @media only screen and (min-width: 1000px) {
-  main article .titre_article {
+  main > article > .titre_article {
     grid-column: span 6;
     margin-left: 0%;
   }
 }
 
 @media only screen and (min-width: 500px) and (max-width: 999px) {
-  main article .titre_article {
+  main > article > .titre_article {
     grid-column: span 6;
     margin-left: 0%;
   }
 }
 
 @media only screen and (max-width: 499px) {
-  main article .titre_article {
+  main > article > .titre_article {
     grid-column: span 6;
     margin-left: 0%;
   }
 }
 
-main article section {
+main > article > section {
   border: 2px solid;
   border-color: #502419;
   background-color: #B3D89C;
@@ -114,53 +114,53 @@ main article section {
 }
 
 @media only screen and (min-width: 1000px) {
-  main article section {
+  main > article > section {
     grid-column: span 2;
     margin-left: 0%;
   }
 }
 
 @media only screen and (min-width: 500px) and (max-width: 999px) {
-  main article section {
+  main > article > section {
     grid-column: span 3;
     margin-left: 0%;
   }
 }
 
 @media only screen and (max-width: 499px) {
-  main article section {
+  main > article > section {
     grid-column: span 6;
     margin-left: 0%;
   }
 }
 
-main article section img {
+main > article > section > img {
   border-radius: 10px;
   width: 100%;
 }
 
 @media only screen and (min-width: 1000px) {
-  main article section img {
+  main > article > section > img {
     grid-column: span 2;
     margin-left: 0%;
   }
 }
 
 @media only screen and (min-width: 500px) and (max-width: 999px) {
-  main article section img {
+  main > article > section > img {
     grid-column: span 2;
     margin-left: 0%;
   }
 }
 
 @media only screen and (max-width: 499px) {
-  main article section img {
+  main > article > section > img {
     grid-column: span 2;
     margin-left: 0%;
   }
 }
 
-main article section div {
+main > article > section > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -173,27 +173,27 @@ main article section div {
 }
 
 @media only screen and (min-width: 1000px) {
-  main article section div {
+  main > article > section > div {
     grid-column: span 4;
     margin-left: 0%;
   }
 }
 
 @media only screen and (min-width: 500px) and (max-width: 999px) {
-  main article section div {
+  main > article > section > div {
     grid-column: span 4;
     margin-left: 0%;
   }
 }
 
 @media only screen and (max-width: 499px) {
-  main article section div {
+  main > article > section > div {
     grid-column: span 4;
     margin-left: 0%;
   }
 }
 
-main article #validationCard {
+main > article > #validationCard {
   border: 1px solid;
   border-radius: 10px;
   border-color: #502419;
@@ -209,21 +209,108 @@ main article #validationCard {
 }
 
 @media only screen and (min-width: 1000px) {
-  main article #validationCard {
+  main > article > #validationCard {
     grid-column: span 6;
     margin-left: 0%;
   }
 }
 
 @media only screen and (min-width: 500px) and (max-width: 999px) {
-  main article #validationCard {
+  main > article > #validationCard {
     grid-column: span 6;
     margin-left: 0%;
   }
 }
 
 @media only screen and (max-width: 499px) {
-  main article #validationCard {
+  main > article > #validationCard {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+
+main > article section#detailProduit {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[6];
+      grid-template-columns: repeat(6, 1fr);
+  grid-gap: 0;
+}
+
+@media only screen and (min-width: 1000px) {
+  main > article section#detailProduit {
+    grid-column: span 5;
+    margin-left: 16.66667%;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  main > article section#detailProduit {
+    grid-column: span 5;
+    margin-left: 16.66667%;
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  main > article section#detailProduit {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+
+main > article section#detailProduit > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+@media only screen and (min-width: 1000px) {
+  main > article section#detailProduit > div {
+    grid-column: span 4;
+    margin-left: 0%;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  main > article section#detailProduit > div {
+    grid-column: span 4;
+    margin-left: 0%;
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  main > article section#detailProduit > div {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+
+main > article section#detailProduit > div + div {
+  border-top: 1px solid black;
+}
+
+@media only screen and (min-width: 1000px) {
+  main > article section#detailProduit > div + div {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  main > article section#detailProduit > div + div {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  main > article section#detailProduit > div + div {
     grid-column: span 6;
     margin-left: 0%;
   }
