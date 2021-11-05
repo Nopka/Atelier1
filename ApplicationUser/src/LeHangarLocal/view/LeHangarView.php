@@ -141,7 +141,6 @@
                $elements = $this->data;
                $montantTotal = 0;
                $elementsPanier="<article><h2 class='titre_article'>Les articles du panier</h2>";
-               var_dump($_SESSION);
                if(isset($_SESSION["panier"]) && !empty($_SESSION["panier"])) {
                     foreach ($elements as $id => $unElement) {
                          $tarif_unitaire = floatval($unElement[0]["tarif_unitaire"]);
