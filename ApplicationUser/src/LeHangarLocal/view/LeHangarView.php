@@ -104,12 +104,15 @@
                $elements = $this->data;
                $elementsProducteur="<article>
                <h2 class='titre_article'>Informations sur le producteur</h2>
-               
+               <div id='infoProducteur'>
+                    nom : ".$elements[0]->nom."<br />
+                    adresse : ".$elements[0]->localisation."
+               </div>
                <h2 class='titre_article'>Les différents produits du producteur </h2>";
                $idProducteur = filter_var($_GET['id'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                
                
-               foreach ($elements as $unElement) {
+               foreach ($elements[1] as $unElement) {
                     $ajouterPanier = $route->urlFor('elementsProducteur',[['id',$idProducteur],['id_element',$unElement->id]]);
                     $elementsProducteur .= "
                          <section>
