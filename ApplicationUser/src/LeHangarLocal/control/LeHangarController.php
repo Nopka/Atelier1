@@ -46,13 +46,23 @@ class LeHangarController extends \mf\control\AbstractController{
                $producteur = filter_var($request->get['id'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                $leProducteur = Producteur::select()->where('id','=',$producteur)->first();
                $elementsProducteur = $leProducteur->produits()->get();
-               $vue = new LeHangarView($elementsProducteur);
+               if (isset($_POST['quantite']) and isset($_GET['id_element'])){
+                    $idProduit = filter_var($_GET['id_element'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $quantite = filter_var($_POST['quantite'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $produit = $elementsProducteur->find($idProduit);
+                    Panier::ajouterPanier($idProduit,["nom" => $produit->nom,"description" => $produit->description,"tarif_unitaire" => $produit->tarif_unitaire],$quantite);
+               }
+               $vue = new LeHangarView($elementsProducteur,$leProducteur);
                $vue->setAppTitle("$leProducteur->nom");
                $vue->render('renderElementsProducteur');
           }
 
           public function viewPanier() {
                $request = new HttpRequest();
+               if (isset($_GET['id'])){
+                    $id = filter_var($request->get['id'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    Panier::supprimerDuPanier($id);
+               }
                $list_produits = Panier::GetAllProduits();
                $vue = new LeHangarView($list_produits);
                $vue->setAppTitle("Panier");
