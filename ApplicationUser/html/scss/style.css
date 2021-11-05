@@ -160,7 +160,7 @@ main article section img {
   }
 }
 
-main article section p {
+main article section div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -173,21 +173,21 @@ main article section p {
 }
 
 @media only screen and (min-width: 1000px) {
-  main article section p {
+  main article section div {
     grid-column: span 4;
     margin-left: 0%;
   }
 }
 
 @media only screen and (min-width: 500px) and (max-width: 999px) {
-  main article section p {
+  main article section div {
     grid-column: span 4;
     margin-left: 0%;
   }
 }
 
 @media only screen and (max-width: 499px) {
-  main article section p {
+  main article section div {
     grid-column: span 4;
     margin-left: 0%;
   }

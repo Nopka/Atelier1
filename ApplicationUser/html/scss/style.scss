@@ -49,7 +49,7 @@ main {
                 @include s(2, 0);
                 width: 100%;
             }
-            p{
+            div{
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;

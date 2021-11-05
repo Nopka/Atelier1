@@ -40,9 +40,9 @@
                     $viewCategorie .="
                          <section>
                               <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'>
-                              <p>
+                              <div>
                                    <a href=".$uneCategorie.">$categorie->nom</a>
-                              </p>
+                              </div>
                          </section>
                     ";
                }
@@ -59,12 +59,12 @@
                     $viewProducteurs .="
                          <section>
                               <img src='".$http_req->root."/html/img/images.png' alt='image'>
-                              <p>
+                              <div>
                                    <a href=".$unProducteur.">
                                         $producteur->nom<br>
                                         $producteur->localisation
                                    </a>
-                              </p>
+                              </div>
                          </section>
                     ";
                }
@@ -81,7 +81,7 @@
                     $elementsCategorie .= "
                          <section>
                               <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'/>
-                              <p>
+                              <div>
                                    <div class='nomElement'>$unElement->nom</div>
                                    <div class='descElement'>$unElement->description</div>
                                    <div class='tarifElement'>$unElement->tarif_unitaire</div>
@@ -89,7 +89,7 @@
                                         <input name='quantite' type='text'></input>
                                         <button type='submit'>Ajouter au Panier</button>
                                    </form>
-                              </p>
+                              </div>
                          </section>
                     ";
                }
@@ -104,11 +104,11 @@
                     $elementsProducteur .= "
                          <section>
                               <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'>
-                              <p>
+                              <div>
                                    <div class='nomElement'>$unElement->nom</div>
                                    <div class='descElement'>$unElement->description</div>
                                    <div class='tarifElement'>$unElement->tarif_unitaire</div>
-                              </p>
+                              </div>
                          </section>
                     ";
                }
