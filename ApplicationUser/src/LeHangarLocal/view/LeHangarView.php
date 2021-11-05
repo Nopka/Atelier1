@@ -111,7 +111,6 @@
                </div>
                <h2 class='titre_article'>Les différents produits du producteur </h2>";
                
-               
                foreach ($elements[1] as $unElement) {
                     $ajouterPanier = $route->urlFor('elementsProducteur',[['id',$idProducteur],['id_element',$unElement->id]]);
                     $elementsProducteur .= "
@@ -138,30 +137,34 @@
                $elements = $this->data;
                $montantTotal = 0;
                $elementsPanier="<article><h2 class='titre_article'>Les articles du panier</h2>";
-               foreach ($elements as $id => $unElement) {
-                    $tarif_unitaire = floatval($unElement[0]["tarif_unitaire"]);
-                    $quantite = $unElement[1];
-                    $supprimerPanier = $route->urlFor('panier',[['id',$id]]);
-                    $unite = $unElement[0]["unite"];
+               var_dump($_SESSION);
+               if(isset($_SESSION["panier"]) && !empty($_SESSION["panier"])) {
+                    foreach ($elements as $id => $unElement) {
+                         $tarif_unitaire = floatval($unElement[0]["tarif_unitaire"]);
+                         $quantite = $unElement[1];
+                         $supprimerPanier = $route->urlFor('panier',[['id',$id]]);
+                         $unite = $unElement[0]["unite"];
+                         $elementsPanier .= "
+                              <section>
+                                   <img src='".$http_req->root."/html/img/".$unElement[0]['nom'].".jpg' alt='image'>
+                                   <div>
+                                        <h3 class='nomElement'>".$unElement[0]["nom"]."</h3>
+                                        <div class='descElement'>".$unElement[0]["description"]."</div>
+                                        <div class='tarifElement'>".$tarif_unitaire." &#8364/".$unite."</div>
+                                        <div class=''>Nombre : ".$quantite."</div>
+                                        <div class=''>".$tarif_unitaire*$quantite." &#8364</div>
+                                        <a href=".$supprimerPanier."><button>Retirer</button></a>
+                                   </div>
+                              </section>
+                         ";
+                         $montantTotal = $montantTotal + ($tarif_unitaire*$quantite);
+                    }
+                    $validation = $route->urlFor('validation',[["montant", $montantTotal]]);
                     $elementsPanier .= "
-                         <section>
-                              <img src='".$http_req->root."/html/img/".$unElement[0]['nom'].".jpg' alt='image'>
-                              <div>
-                                   <h3 class='nomElement'>".$unElement[0]["nom"]."</h3>
-                                   <div class='descElement'>".$unElement[0]["description"]."</div>
-                                   <div class='tarifElement'>".$tarif_unitaire." &#8364/".$unite."</div>
-                                   <div class=''>Nombre : ".$quantite."</div>
-                                   <div class=''>".$tarif_unitaire*$quantite." &#8364</div>
-                                   <a href=".$supprimerPanier."><button>Retirer</button></a>
-                              </div>
-                         </section>
-                    ";
-                    $montantTotal = $montantTotal + ($tarif_unitaire*$quantite);
+                    <p>Cela vous coutera $montantTotal &#8364!</p><br />
+                    <a href=".$validation."><button>Valider la commande</button></a>";
                }
-               $validation = $route->urlFor('validation',[["montant", $montantTotal]]);
-               $elementsPanier .= "<p>Cela vous coutera $montantTotal &#8364!</p><br />
-                    <a href=".$validation."><button>Valider la commande</button></a>
-               ";
+
                return $elementsPanier;
           }
 

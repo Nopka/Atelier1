@@ -4,7 +4,11 @@
      class Panier{
 
           public static function GetAllProduits() {
-                   return $_SESSION["panier"];
+               if(isset($_SESSION["panier"])){
+                    return $_SESSION["panier"];
+               }else{
+                    return null;
+               }
           }
 
           public static function ajouterPanier($idProduit, $infoProduit, $quantite){
