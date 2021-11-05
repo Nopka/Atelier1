@@ -29,7 +29,7 @@ $db->bootEloquent();           /* établir la connexion */
 $loader = new mf\utils\ClassLoader('src');
 $loader->register();
 
-LeHangarView::addStyleSheet('/html/scss/style.css');
+LeHangarView::addStyleSheet('/html/css/style.css');
 $ctrl = new \LeHangarLocal\control\LeHangarController();
 
 $router = new Router();

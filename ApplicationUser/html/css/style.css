@@ -1,17 +1,251 @@
-/* Error: Parentheses aren't allowed in plain CSS.
- *    ,
- * 14 |   -ms-grid-columns: (1fr)[6];
- *    |                     ^
- *    '
- *   scss\style.css 14:21  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Parentheses aren't allowed in plain CSS.\a    \2577 \a 14 \2502    -ms-grid-columns: (1fr)[6];\a    \2502                      ^\a    \2575 \a   scss\\style.css 14:21  root stylesheet";
+#titre {
+  text-align: center;
+  background-color: #417B5A;
+  color: whitesmoke;
 }
+
+html {
+  background-color: whitesmoke;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 0;
+}
+@media only screen and (min-width: 1000px) {
+  main > #menu {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  main > #menu {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+@media only screen and (max-width: 499px) {
+  main > #menu {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+main > #menu ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+}
+main > article {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 0;
+}
+@media only screen and (min-width: 1000px) {
+  main > article {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  main > article {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+@media only screen and (max-width: 499px) {
+  main > article {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+main > article > .titre_article {
+  text-align: center;
+  color: #502419;
+}
+@media only screen and (min-width: 1000px) {
+  main > article > .titre_article {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  main > article > .titre_article {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+@media only screen and (max-width: 499px) {
+  main > article > .titre_article {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+main > article > section {
+  border: 2px solid;
+  border-color: #502419;
+  background-color: #B3D89C;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 0;
+}
+@media only screen and (min-width: 1000px) {
+  main > article > section {
+    grid-column: span 2;
+    margin-left: 0%;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  main > article > section {
+    grid-column: span 3;
+    margin-left: 0%;
+  }
+}
+@media only screen and (max-width: 499px) {
+  main > article > section {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+main > article > section > img {
+  border-radius: 10px;
+  width: 100%;
+}
+@media only screen and (min-width: 1000px) {
+  main > article > section > img {
+    grid-column: span 2;
+    margin-left: 0%;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  main > article > section > img {
+    grid-column: span 2;
+    margin-left: 0%;
+  }
+}
+@media only screen and (max-width: 499px) {
+  main > article > section > img {
+    grid-column: span 2;
+    margin-left: 0%;
+  }
+}
+main > article > section > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+@media only screen and (min-width: 1000px) {
+  main > article > section > div {
+    grid-column: span 4;
+    margin-left: 0%;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  main > article > section > div {
+    grid-column: span 4;
+    margin-left: 0%;
+  }
+}
+@media only screen and (max-width: 499px) {
+  main > article > section > div {
+    grid-column: span 4;
+    margin-left: 0%;
+  }
+}
+main > article > #validationCard {
+  border: 1px solid;
+  border-radius: 10px;
+  border-color: #502419;
+  background-color: #B3D89C;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+@media only screen and (min-width: 1000px) {
+  main > article > #validationCard {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  main > article > #validationCard {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+@media only screen and (max-width: 499px) {
+  main > article > #validationCard {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+main > article section#detailProduit {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 0;
+}
+@media only screen and (min-width: 1000px) {
+  main > article section#detailProduit {
+    grid-column: span 5;
+    margin-left: 16.6666666667%;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  main > article section#detailProduit {
+    grid-column: span 5;
+    margin-left: 16.6666666667%;
+  }
+}
+@media only screen and (max-width: 499px) {
+  main > article section#detailProduit {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+main > article section#detailProduit > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+@media only screen and (min-width: 1000px) {
+  main > article section#detailProduit > div {
+    grid-column: span 4;
+    margin-left: 0%;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  main > article section#detailProduit > div {
+    grid-column: span 4;
+    margin-left: 0%;
+  }
+}
+@media only screen and (max-width: 499px) {
+  main > article section#detailProduit > div {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+main > article section#detailProduit > div + div {
+  border-top: 1px solid black;
+}
+@media only screen and (min-width: 1000px) {
+  main > article section#detailProduit > div + div {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  main > article section#detailProduit > div + div {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+@media only screen and (max-width: 499px) {
+  main > article section#detailProduit > div + div {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
