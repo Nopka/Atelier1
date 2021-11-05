@@ -34,9 +34,6 @@ main {
   main #menu {
     grid-column: span 6;
     margin-left: 0%;
-    -webkit-box-ordinal-group: 2;
-        -ms-flex-order: 1;
-            order: 1;
   }
 }
 
@@ -75,9 +72,6 @@ main article {
   main article {
     grid-column: span 6;
     margin-left: 0%;
-    -webkit-box-ordinal-group: 1;
-        -ms-flex-order: 0;
-            order: 0;
   }
 }
 
@@ -104,9 +98,6 @@ main article #titre_article {
   main article #titre_article {
     grid-column: span 6;
     margin-left: 0%;
-    -webkit-box-ordinal-group: 1;
-        -ms-flex-order: 0;
-            order: 0;
   }
 }
 
@@ -140,9 +131,6 @@ main article section {
   main article section {
     grid-column: span 6;
     margin-left: 0%;
-    -webkit-box-ordinal-group: 1;
-        -ms-flex-order: 0;
-            order: 0;
   }
 }
 
@@ -169,9 +157,6 @@ main article section img {
   main article section img {
     grid-column: span 2;
     margin-left: 0%;
-    -webkit-box-ordinal-group: 1;
-        -ms-flex-order: 0;
-            order: 0;
   }
 }
 
@@ -205,9 +190,6 @@ main article section p {
   main article section p {
     grid-column: span 4;
     margin-left: 0%;
-    -webkit-box-ordinal-group: 1;
-        -ms-flex-order: 0;
-            order: 0;
   }
 }
 /*# sourceMappingURL=style.css.map */

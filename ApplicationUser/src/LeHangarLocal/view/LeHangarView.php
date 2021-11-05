@@ -6,13 +6,12 @@
 
 
      class LeHangarView extends \mf\view\AbstractView{
-
           //Appelle le constructeur de la classe parent
           public function __construct($data){
                parent::__construct($data);
           }
           
-
+          
           private function renderHeader(){
                return '<header id="titre"><h1>LeHangar.Local</h1></header> <main id="container">';
           }
@@ -33,13 +32,14 @@
           }
           private function renderHome(){
                $route = new Router();
+               $http_req = new HttpRequest();
                $lesCategories = $this->data;
                $viewCategorie = "<article><h2 id='titre_article'>Les différentes catégories de produits</h2>";
                foreach ($lesCategories as $categorie) {
                     $uneCategorie = $route->urlFor('elementsCategorie', [['id', $categorie->id]]);
                     $viewCategorie .="
                          <section>
-                              <img src='http://localhost/LP-CIASIE_dev/Ateliers/Atelier1/ApplicationUser/html/img/Poivrons-rouges.jpg' alt='image'>
+                              <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'>
                               <p>
                                    <a href=".$uneCategorie.">$categorie->nom</a>
                               </p>
@@ -51,13 +51,14 @@
           }
           private function renderProducteurs(){
                $route = new Router();
+               $http_req = new HttpRequest();
                $lesProducteurs = $this->data;
                $viewProducteurs ="<article><h2 id='titre_article'>Les différents producteurs</h2>";
                foreach ($lesProducteurs as $producteur) {
                     $unProducteur = $route->urlFor('elementsProducteur',[['id',$producteur->id]]);
                     $viewProducteurs .="
                          <section>
-                              <img src='http://localhost/LP-CIASIE_dev/Ateliers/Atelier1/ApplicationUser/html/img/images.png' alt='image'>
+                              <img src='".$http_req->root."/html/img/images.png' alt='image'>
                               <p>
                                    <a href=".$unProducteur.">
                                         $producteur->nom<br>
@@ -71,18 +72,23 @@
                return $viewProducteurs;
           }
           private function renderUneCategorie(){
+               $route = new Router();
+               $http_req = new HttpRequest();
                $elements = $this->data;
                $elementsCategorie ="<article><h2 id='titre_article'>Les différents produits de la catégorie </h2>";
                foreach ($elements as $unElement) {
+                    $ajouterPanier = $route->urlFor('elementsCategorie',[['id',$unElement->id]]);
                     $elementsCategorie .= "
                          <section>
-                              <img src='http://localhost/LP-CIASIE_dev/Ateliers/Atelier1/ApplicationUser/html/img/Poivrons-rouges.jpg' alt='image'>
+                              <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'/>
                               <p>
                                    <div class='nomElement'>$unElement->nom</div>
                                    <div class='descElement'>$unElement->description</div>
                                    <div class='tarifElement'>$unElement->tarif_unitaire</div>
-
-                                   <div>$unElement->id_producteur</div>
+                                   <form class='formulairePanier' action=".$ajouterPanier." method='GET'>
+                                        <input name='quantite' type='text'></input>
+                                        <button type='submit'>Ajouter au Panier</button>
+                                   </form>
                               </p>
                          </section>
                     ";
@@ -90,18 +96,18 @@
                return $elementsCategorie;
           }
           private function renderElementsProducteur(){
+               $route = new Router();
+               $http_req = new HttpRequest();
                $elements = $this->data;
                $elementsProducteur="<article><h2 id='titre_article'>Les différents produits du producteur </h2>";
                foreach ($elements as $unElement) {
                     $elementsProducteur .= "
                          <section>
-                              <img src='http://localhost/LP-CIASIE_dev/Ateliers/Atelier1/ApplicationUser/html/img/Poivrons-rouges.jpg' alt='image'>
+                              <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'>
                               <p>
                                    <div class='nomElement'>$unElement->nom</div>
                                    <div class='descElement'>$unElement->description</div>
                                    <div class='tarifElement'>$unElement->tarif_unitaire</div>
-
-                                   <div>$unElement->id_producteur</div>
                               </p>
                          </section>
                     ";

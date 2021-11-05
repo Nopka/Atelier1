@@ -14,7 +14,7 @@ main {
     #menu {
         @include l(6, 0);
         @include m(6, 0);
-        @include s(6, 0, 1);
+        @include s(6, 0);
         ul {
             display: flex;
             justify-content: space-around;
@@ -25,11 +25,11 @@ main {
         @include grid;
         @include l(6, 0);
         @include m(6, 0);
-        @include s(6, 0, 0);
+        @include s(6, 0);
         #titre_article {
             @include l(6, 0);
             @include m(6, 0);
-            @include s(6, 0, 0);
+            @include s(6, 0);
             text-align: center;
             color: #502419;
         }
@@ -40,13 +40,13 @@ main {
             border-radius: 10px;
             @include l(2, 0);
             @include m(3, 0);
-            @include s(6, 0, 0);
+            @include s(6, 0);
             @include grid;
             img{
                 border-radius: 10px;
                 @include l(2, 0);
                 @include m(2, 0);
-                @include s(2, 0, 0);
+                @include s(2, 0);
                 width: 100%;
             }
             p{
@@ -55,7 +55,7 @@ main {
                 justify-content: space-around;
                 @include l(4, 0);
                 @include m(4, 0);
-                @include s(4, 0, 0);
+                @include s(4, 0);
             }
         }
     }
