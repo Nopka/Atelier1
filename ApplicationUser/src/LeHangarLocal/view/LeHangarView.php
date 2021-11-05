@@ -9,6 +9,7 @@
           //Appelle le constructeur de la classe parent
           public function __construct($data){
                parent::__construct($data);
+               
           }
           
           
@@ -76,8 +77,9 @@
                $http_req = new HttpRequest();
                $elements = $this->data;
                $elementsCategorie ="<article><h2 id='titre_article'>Les différents produits de la catégorie </h2>";
+               $idCategorie = $_GET['id'];
                foreach ($elements as $unElement) {
-                    $ajouterPanier = $route->urlFor('elementsCategorie',[['id',$unElement->id]]);
+                    $ajouterPanier = $route->urlFor('elementsCategorie',[['id',$idCategorie],['id_element',$unElement->id]]);
                     $elementsCategorie .= "
                          <section>
                               <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'/>
@@ -85,14 +87,15 @@
                                    <div class='nomElement'>$unElement->nom</div>
                                    <div class='descElement'>$unElement->description</div>
                                    <div class='tarifElement'>$unElement->tarif_unitaire</div>
-                                   <form class='formulairePanier' action=".$ajouterPanier." method='GET'>
-                                        <input name='quantite' type='text'></input>
-                                        <button type='submit'>Ajouter au Panier</button>
+                                   <form class='formulairePanier' action=".$ajouterPanier." method='POST'>
+                                        <input name='quantite' type='text' value='0'></input>
+                                        <button type='submit' name='submit'>Ajouter au Panier</button>
                                    </form>
                               </div>
                          </section>
                     ";
                }
+               var_dump($_SESSION);
                return $elementsCategorie;
           }
           private function renderElementsProducteur(){

@@ -2,6 +2,7 @@
 namespace LeHangarLocal\control;
 
 use LeHangarLocal\model\Categorie;
+use LeHangarLocal\model\Panier;
 use LeHangarLocal\model\Producteur;
 use LeHangarLocal\view\LeHangarView;
 use mf\utils\HttpRequest;
@@ -27,9 +28,14 @@ class LeHangarController extends \mf\control\AbstractController{
           }
           public function viewCategorie(){
                $request = new HttpRequest();
-               $categorie = $request->get;
+               $categorie = $request->get['id'];
                $laCategorie = Categorie::select()->where('id','=',$categorie)->first();
                $elementsCategorie =$laCategorie->produits()->get();
+               if (isset($_POST['quantite']) and isset($_GET['id_element'])){
+                    $idProduit = $_GET['id_element'];
+                    $quantite = $_POST['quantite'];
+                    Panier::ajouterPanier($idProduit,$quantite);
+               }
                $vue = new LeHangarView($elementsCategorie);
                $vue->setAppTitle("$laCategorie->nom");
                $vue->render('renderUneCategorie');

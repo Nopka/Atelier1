@@ -8,7 +8,7 @@ use mf\router\Router;
 
 ini_set('display_errors', '1');
 
-//Initialisation de la session
+
 session_start();
 
 //Require des autoloader
