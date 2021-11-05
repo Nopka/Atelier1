@@ -4,6 +4,8 @@ namespace LeHangarLocal\control;
 use LeHangarLocal\model\Categorie;
 use LeHangarLocal\model\Panier;
 use LeHangarLocal\model\Producteur;
+use LeHangarLocal\model\Commande;
+use LeHangarLocal\model\CommandeProduit;
 use LeHangarLocal\view\LeHangarView;
 use mf\utils\HttpRequest;
 use mf\router\Router;
@@ -71,6 +73,23 @@ class LeHangarController extends \mf\control\AbstractController{
 
           public function viewInfoClient() {
                $request = new HttpRequest();
+               if(isset($_POST["bouton"])){
+                    $commande = new Commande();
+                    $commande->nom_client = filter_var($_POST['nom'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $commande->mail_client = filter_var($_POST['mail'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $commande->tel_client = filter_var($_POST['tel'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $commande->montant = filter_var($_GET["montant"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $commande->save();
+                    $list_produits = Panier::GetAllProduits();
+                    foreach($list_produits as $idProduit => $infoProduit) {
+                         $commander = new CommandeProduit();
+                         $commander->id_commande = $commande->id;
+                         $commander->id_produit = $idProduit;
+                         $commander->quantite = $infoProduit[1];
+                         $commander->save();
+                    }
+               }
+               var_dump(Panier::GetAllProduits());
                $vue = new LeHangarView(null);
                $vue->setAppTitle("Récapitulatif Panier");
                $vue->render('renderInfoClient');

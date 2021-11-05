@@ -132,6 +132,7 @@
                $route = new Router();
                $http_req = new HttpRequest();
                $elements = $this->data;
+               $montantTotal = 0;
                $elementsPanier="<article><h2 class='titre_article'>Les articles du panier</h2>";
                foreach ($elements as $id => $unElement) {
                     $tarif_unitaire = floatval($unElement[0]["tarif_unitaire"]);
@@ -150,9 +151,10 @@
                               </div>
                          </section>
                     ";
+                    $montantTotal = $montantTotal + ($tarif_unitaire*$quantite);
                }
-               $validation = $route->urlFor('validation',[]);
-               $elementsPanier .= "
+               $validation = $route->urlFor('validation',[["montant", $montantTotal]]);
+               $elementsPanier .= "<p>Cela vous coutera $montantTotal !</p><br />
                     <a href=".$validation."><button>Valider la commande</button></a>
                ";
                return $elementsPanier;
@@ -169,12 +171,16 @@
                          <div>
                               Veuillez remplir les champs suivant afin de valider votre commande.
                          </div>
-                         <form methode='' action='' >
+                         <form method='POST' action='".$route->urlFor('validation',[["montant", $_GET["montant"]]])."' >
                               <input name='nom' type='text' placeholder='Nom '/>
                               <input name='mail' type='email' placeholder='E-mail '/>
                               <input name='tel' type='tel' placeholder='Telephone '/>
-                              <input name='bouton' type='submit' value='Valider votre commande'/>
-                         </form>
+                              <input id='bouton' name='bouton' type='submit' value='Valider votre commande'/>
+                         </form>";
+                         if(isset($_POST["bouton"])){ 
+                              $elementsInfoClient .= "<p>Votre commande a était enregistrer !</p>";
+                         }
+                         $elementsInfoClient .= "
                     </div>
                ";
                
