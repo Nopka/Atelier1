@@ -86,8 +86,7 @@
                               <div>
                                    <div class='nomElement'>$unElement->nom</div>
                                    <div class='descElement'>$unElement->description</div>
-                                   <div class='tarifElement'>$unElement->tarif_unitaire</div>
-                                   <div class='unite'>$unElement->unite</div>
+                                   <div class='tarifElement'>$unElement->tarif_unitaire &#8364 / $unElement->unite</div>
                                    <form class='formulairePanier' action=".$ajouterPanier." method='POST'>
                                         <input name='quantite' type='number' value='0'></input>
                                         <button type='submit' name='submit'>Ajouter au Panier</button>
@@ -102,6 +101,8 @@
                $route = new Router();
                $http_req = new HttpRequest();
                $elements = $this->data;
+               $idProducteur = filter_var($_GET['id'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+               // $producteur = getProducteur($idProducteur);
                $elementsProducteur="<article>
                <h2 class='titre_article'>Informations sur le producteur</h2>
                <div id='infoProducteur'>
@@ -109,7 +110,6 @@
                     adresse : ".$elements[0]->localisation."
                </div>
                <h2 class='titre_article'>Les différents produits du producteur </h2>";
-               $idProducteur = filter_var($_GET['id'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                
                
                foreach ($elements[1] as $unElement) {
@@ -120,8 +120,7 @@
                               <div>
                                    <div class='nomElement'>$unElement->nom</div>
                                    <div class='descElement'>$unElement->description</div>
-                                   <div class='tarifElement'>$unElement->tarif_unitaire</div>
-                                   <div class='unite'>$unElement->unite</div>
+                                   <div class='tarifElement'>$unElement->tarif_unitaire &#8364 / $unElement->unite</div>
                                    <form class='formulairePanier' action=".$ajouterPanier." method='POST'>
                                         <input name='quantite' type='number' value='0'></input>
                                         <button type='submit' name='submit'>Ajouter au Panier</button>
@@ -160,7 +159,7 @@
                     $montantTotal = $montantTotal + ($tarif_unitaire*$quantite);
                }
                $validation = $route->urlFor('validation',[["montant", $montantTotal]]);
-               $elementsPanier .= "<p>Cela vous coutera $montantTotal !</p><br />
+               $elementsPanier .= "<p>Cela vous coutera $montantTotal &#8364!</p><br />
                     <a href=".$validation."><button>Valider la commande</button></a>
                ";
                return $elementsPanier;
