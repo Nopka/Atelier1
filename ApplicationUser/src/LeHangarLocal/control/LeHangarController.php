@@ -89,6 +89,7 @@ class LeHangarController extends \mf\control\AbstractController{
                          $commander->quantite = $infoProduit[1];
                          $commander->save();
                     }
+                    $_SESSION["panier"] = array();
                }
                $vue = new LeHangarView(null);
                $vue->setAppTitle("Récapitulatif Panier");
