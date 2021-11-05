@@ -122,11 +122,11 @@
                $route = new Router();
                $http_req = new HttpRequest();
                $elements = $this->data;
-               $elementsProducteur="<article><h2 id='titre_article'>Les articles du panier</h2>";
+               $elementsPanier="<article><h2 id='titre_article'>Les articles du panier</h2>";
                foreach ($elements as $unElement) {
                     $tarif_unitaire = floatval($unElement[0]["tarif_unitaire"]);
                     $quantite = $unElement[1];
-                    $elementsProducteur .= "
+                    $elementsPanier .= "
                          <section>
                               <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'>
                               <div>
@@ -135,11 +135,33 @@
                                    <div class='tarifElement'>".$tarif_unitaire." &#8364/unité</div>
                                    <div class=''>Nombre : ".$quantite."</div>
                                    <div class=''>".$tarif_unitaire*$quantite." &#8364</div>
+                                   <form method='POST' action=''>
+                                   <input name='bouton' type='submit' value='Valider'/>
                               </div>
                          </section>
                     ";
                }
-               return $elementsProducteur;
+               return $elementsPanier;
+          }
+
+          private function renderInfoClient() {
+               $route = new Router();
+               $http_req = new HttpRequest();
+               $elements = $this->data;
+               $elementsInfoClient="
+               <article>
+                    <h2 id='titre_article'>Récapitulatif de votre commande</h2>
+                    <section>
+                         <form methode='' action='' >
+                              <input name='nom' type='text'/>
+                              <input name='mail' type='email'/>
+                              <input name='mail' type='tel'/>
+                              <input name='bouton' type='submit' value='Valider votre commande'/>
+                         </form>
+                    </section>
+               ";
+               
+               return $elementsInfoClient;
           }
 
           protected function renderBody($selector)
@@ -163,6 +185,9 @@
                          break;
                     case 'renderPanier':
                          $content = $this->renderPanier();
+                         break;
+                    case 'renderInfoClient':
+                         $content = $this->renderInfoClient();
                          break;
                }
                $body = <<<EOT

@@ -58,6 +58,13 @@ class LeHangarController extends \mf\control\AbstractController{
                $vue->setAppTitle("Panier");
                $vue->render('renderPanier');
           }
+
+          public function viewInfoClient() {
+               $request = new HttpRequest();
+               $vue = new LeHangarView(null);
+               $vue->setAppTitle("Récapitulatif Panier");
+               $vue->render('renderInfoClient');
+          }
      }
 
 ?>
