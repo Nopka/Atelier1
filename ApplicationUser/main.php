@@ -39,6 +39,7 @@ $router->addRoute('elementsCategorie','/categorie/','\LeHangarLocal\control\LeHa
 $router->addRoute('producteurs','/producteurs/','\LeHangarLocal\control\LeHangarController','viewProducteurs');
 $router->addRoute('elementsProducteur','/producteur/','\LeHangarLocal\control\LeHangarController','viewElementsProducteur');
 $router->addRoute('panier','/panier/','\LeHangarLocal\control\LeHangarController','viewPanier');
+$router->addRoute('validation','/commander/','\LeHangarLocal\control\LeHangarController','viewInfoClient');
 
 $router->run();
 

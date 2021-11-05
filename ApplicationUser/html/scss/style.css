@@ -192,4 +192,40 @@ main article section div {
     margin-left: 0%;
   }
 }
+
+main article #validationCard {
+  border: 1px solid;
+  border-radius: 10px;
+  border-color: #502419;
+  background-color: #B3D89C;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+@media only screen and (min-width: 1000px) {
+  main article #validationCard {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  main article #validationCard {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  main article #validationCard {
+    grid-column: span 6;
+    margin-left: 0%;
+  }
+}
 /*# sourceMappingURL=style.css.map */

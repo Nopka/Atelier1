@@ -151,6 +151,10 @@
                          </section>
                     ";
                }
+               $validation = $route->urlFor('validation',[]);
+               $elementsPanier .= "
+                    <a href=".$validation."><button>Valider la commande</button></a>
+               ";
                return $elementsPanier;
           }
 
@@ -160,15 +164,18 @@
                $elements = $this->data;
                $elementsInfoClient="
                <article>
-                    <h2 id='titre_article'>Récapitulatif de votre commande</h2>
-                    <section>
+                    <h2 class='titre_article'>Renseignez vos coordonnées</h2>
+                    <div id='validationCard'>
+                         <div>
+                              Veuillez remplir les champs suivant afin de valider votre commande.
+                         </div>
                          <form methode='' action='' >
-                              <input name='nom' type='text'/>
-                              <input name='mail' type='email'/>
-                              <input name='mail' type='tel'/>
+                              <input name='nom' type='text' placeholder='Nom '/>
+                              <input name='mail' type='email' placeholder='E-mail '/>
+                              <input name='tel' type='tel' placeholder='Telephone '/>
                               <input name='bouton' type='submit' value='Valider votre commande'/>
                          </form>
-                    </section>
+                    </div>
                ";
                
                return $elementsInfoClient;

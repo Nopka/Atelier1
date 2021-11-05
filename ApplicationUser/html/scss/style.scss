@@ -58,5 +58,17 @@ main {
                 @include s(4, 0);
             }
         }
+        #validationCard{
+            @include l(6,0);
+            @include m(6,0);
+            @include s(6,0);
+            border: 1px solid;
+            border-radius: 10px;
+            border-color: #502419;
+            background-color: #B3D89C;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
     }
 }
