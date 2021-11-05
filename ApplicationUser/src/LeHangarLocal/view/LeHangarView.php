@@ -88,14 +88,13 @@
                                    <div class='descElement'>$unElement->description</div>
                                    <div class='tarifElement'>$unElement->tarif_unitaire</div>
                                    <form class='formulairePanier' action=".$ajouterPanier." method='POST'>
-                                        <input name='quantite' type='text' value='0'></input>
+                                        <input name='quantite' type='number' value='0'></input>
                                         <button type='submit' name='submit'>Ajouter au Panier</button>
                                    </form>
                               </div>
                          </section>
                     ";
                }
-               var_dump($_SESSION);
                return $elementsCategorie;
           }
           private function renderElementsProducteur(){
@@ -103,7 +102,9 @@
                $http_req = new HttpRequest();
                $elements = $this->data;
                $elementsProducteur="<article><h2 id='titre_article'>Les différents produits du producteur </h2>";
+               $idProducteur = filter_var($_GET['id'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                foreach ($elements as $unElement) {
+                    $ajouterPanier = $route->urlFor('elementsProducteur',[['id',$idProducteur],['id_element',$unElement->id]]);
                     $elementsProducteur .= "
                          <section>
                               <img src='".$http_req->root."/html/img/Poivrons-rouges.jpg' alt='image'>
@@ -111,6 +112,10 @@
                                    <div class='nomElement'>$unElement->nom</div>
                                    <div class='descElement'>$unElement->description</div>
                                    <div class='tarifElement'>$unElement->tarif_unitaire</div>
+                                   <form class='formulairePanier' action=".$ajouterPanier." method='POST'>
+                                        <input name='quantite' type='number' value='0'></input>
+                                        <button type='submit' name='submit'>Ajouter au Panier</button>
+                                   </form>
                               </div>
                          </section>
                     ";
