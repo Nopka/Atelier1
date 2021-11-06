@@ -164,8 +164,11 @@
                     }
                     $validation = $route->urlFor('validation',[["montant", $montantTotal]]);
                     $elementsPanier .= "
-                    <p>Cela vous coutera $montantTotal &#8364!</p><br />
-                    <a href=".$validation."><button>Valider la commande</button></a>";
+                         <div id='recapCommande'>
+                              <p>Cela vous coutera $montantTotal &#8364!</p><br />
+                              <a href=".$validation."><button>Valider la commande</button></a>
+                         </div>
+                    ";
                }
 
                return $elementsPanier;
