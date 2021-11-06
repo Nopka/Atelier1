@@ -84,7 +84,9 @@
                          <section>
                               <img src='".$http_req->root."/html/img/".$unElement->nom.".jpg' alt='image'/>
                               <div>
-                                   <div class='nomElement'>$unElement->nom</div>
+                                   <a href='".$route->urlFor('detailProduit',[['id',$unElement->id]])."'>
+                                        <div class='nomElement'>$unElement->nom</div>
+                                   </a>
                                    <div class='descElement'>$unElement->description</div>
                                    <div class='tarifElement'>$unElement->tarif_unitaire &#8364 / $unElement->unite</div>
                                    <form class='formulairePanier' action=".$ajouterPanier." method='POST'>
@@ -117,7 +119,9 @@
                          <section>
                               <img src='".$http_req->root."/html/img/".$unElement->nom.".jpg' alt='image'>
                               <div>
-                                   <div class='nomElement'>$unElement->nom</div>
+                                   <a href='".$route->urlFor('detailProduit',[['id',$unElement->id]])."'>
+                                        <div class='nomElement'>$unElement->nom</div>
+                                   </a>
                                    <div class='descElement'>$unElement->description</div>
                                    <div class='tarifElement'>$unElement->tarif_unitaire &#8364 / $unElement->unite</div>
                                    <form class='formulairePanier' action=".$ajouterPanier." method='POST'>
@@ -194,6 +198,32 @@
                return $elementsInfoClient;
           }
 
+          private function renderDetailProduit() {
+               $http_req = new HttpRequest();
+               $elements = $this->data;
+               $html="
+               <article>
+                    <h2 class='titre_article'>Détail du produit \"".$elements[0]->nom."\"</h2>
+                    <section id='detailProduit'>
+                         <img src='".$http_req->root."/html/img/".$elements[0]->nom.".jpg' alt='image'>
+                         <div>
+                              <h3 class='nomElement'>".$elements[0]->nom."</h3>
+                              <div class='descElement'>".$elements[0]->description."</div>
+                              <div class='tarifElement'>".$elements[0]->tarif_unitaire." &#8364/".$elements[0]->unite."</div>
+                         </div>
+                         <div>
+                              <h3 class='nomElement'>".$elements[1]->nom."</h3>
+                              <div class='descElement'>".$elements[1]->description."</div>
+                         </div>
+                         <div>
+                              <h3 class='nomElement'>".$elements[2]->nom."</h3>
+                              <div class='descElement'>".$elements[2]->localisation."</div>
+                         </div>
+                    </section>";
+               
+               return $html;
+          }
+
           protected function renderBody($selector)
           {
                $header = $this->renderHeader();
@@ -219,6 +249,8 @@
                     case 'renderInfoClient':
                          $content = $this->renderInfoClient();
                          break;
+                    case 'renderDetailProduit':
+                         $content = $this->renderDetailProduit();
                }
                $body = <<<EOT
                     ${header}

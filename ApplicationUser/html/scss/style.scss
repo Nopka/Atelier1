@@ -11,7 +11,7 @@ html{
 
 main {
     @include grid;
-    #menu {
+    &>#menu {
         @include l(6, 0);
         @include m(6, 0);
         @include s(6, 0);
@@ -21,19 +21,19 @@ main {
             list-style: none;
         }
     }
-    article {
+    &>article {
         @include grid;
         @include l(6, 0);
         @include m(6, 0);
         @include s(6, 0);
-        .titre_article {
+        &>.titre_article {
             @include l(6, 0);
             @include m(6, 0);
             @include s(6, 0);
             text-align: center;
             color: #502419;
         }
-        section {
+        &>section {
             border: 2px solid;
             border-color: #502419;
             background-color: #B3D89C;
@@ -42,14 +42,14 @@ main {
             @include m(3, 0);
             @include s(6, 0);
             @include grid;
-            img{
+            &>img{
                 border-radius: 10px;
                 @include l(2, 0);
                 @include m(2, 0);
                 @include s(2, 0);
                 width: 100%;
             }
-            div{
+            &>div{
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
@@ -58,7 +58,7 @@ main {
                 @include s(4, 0);
             }
         }
-        #validationCard{
+        &>#validationCard{
             @include l(6,0);
             @include m(6,0);
             @include s(6,0);
@@ -69,6 +69,27 @@ main {
             display: flex;
             flex-direction: column;
             text-align: center;
+        }
+        section#detailProduit {
+            @include l(5, 1);
+            @include m(5, 1);
+            @include s(6, 0);
+            @include grid;
+            &>div{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                @include l(4, 0);
+                @include m(4, 0);
+                @include s(6, 0);
+                & + div {
+                    border-top: 1px solid black;
+                    @include l(6, 0);
+                    @include m(6, 0);
+                    @include s(6, 0);
+                }
+            }
+
         }
     }
 }

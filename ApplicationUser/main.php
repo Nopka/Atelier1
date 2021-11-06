@@ -29,7 +29,7 @@ $db->bootEloquent();           /* établir la connexion */
 $loader = new mf\utils\ClassLoader('src');
 $loader->register();
 
-LeHangarView::addStyleSheet('/html/scss/style.css');
+LeHangarView::addStyleSheet('/html/css/style.css');
 $ctrl = new \LeHangarLocal\control\LeHangarController();
 
 $router = new Router();
@@ -40,6 +40,7 @@ $router->addRoute('producteurs','/producteurs/','\LeHangarLocal\control\LeHangar
 $router->addRoute('elementsProducteur','/producteur/','\LeHangarLocal\control\LeHangarController','viewElementsProducteur');
 $router->addRoute('panier','/panier/','\LeHangarLocal\control\LeHangarController','viewPanier');
 $router->addRoute('validation','/commander/','\LeHangarLocal\control\LeHangarController','viewInfoClient');
+$router->addRoute('detailProduit','/detailProduit/','\LeHangarLocal\control\LeHangarController','viewDetailProduit');
 
 $router->run();
 

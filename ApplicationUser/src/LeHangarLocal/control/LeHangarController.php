@@ -6,6 +6,7 @@ use LeHangarLocal\model\Panier;
 use LeHangarLocal\model\Producteur;
 use LeHangarLocal\model\Commande;
 use LeHangarLocal\model\CommandeProduit;
+use LeHangarLocal\model\Produit;
 use LeHangarLocal\view\LeHangarView;
 use mf\utils\HttpRequest;
 use mf\router\Router;
@@ -94,6 +95,18 @@ class LeHangarController extends \mf\control\AbstractController{
                $vue = new LeHangarView(null);
                $vue->setAppTitle("Récapitulatif Panier");
                $vue->render('renderInfoClient');
+          }
+
+          public function viewDetailProduit() {
+               $request = new HttpRequest();
+               $idProduit = filter_var($request->get['id'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+               $leProduit = Produit::select()->where('id','=',$idProduit)->first();
+               $laCategorie = $leProduit->categorie()->first();
+               $leProducteur = $leProduit->producteur()->first();
+               $elements = [$leProduit, $laCategorie, $leProducteur];
+               $vue = new LeHangarView($elements);
+               $vue->setAppTitle("$leProduit->nom");
+               $vue->render('renderDetailProduit');
           }
      }
 
