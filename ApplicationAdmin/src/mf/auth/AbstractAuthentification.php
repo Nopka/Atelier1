@@ -70,7 +70,7 @@ abstract class AbstractAuthentification {
      *
      * Méthode pour enregistrer la connexion d'un utilisateur dans la session 
      *
-     * ATTENTION : cette méthode est appelée uniquement quand la connexion est
+     * ATTENTION : cette méthode est appelée uniquement quand la connexion 
      *             réussie par la méthode login (cf. plus bas)
      *
      * @param String : $username, le login de l'utilisateur  
@@ -87,7 +87,7 @@ abstract class AbstractAuthentification {
      *
      */
     
-    abstract protected function updateSession($username, $level);
+    abstract protected function updateSession($username);
 
      /* 
       * la méthode logout :
@@ -144,7 +144,7 @@ abstract class AbstractAuthentification {
      *
      */
 
-    abstract public function login($username, $db_pass, $given_pass, $level);
+    abstract public function login($username, $db_pass, $given_pass);
     
     /* 
      * La méthode hashPassword :
@@ -165,11 +165,11 @@ abstract class AbstractAuthentification {
     /* 
      * La méthodes verifyPassword : 
      * 
-     * Méthode pour vérifier si un mot de passe est égale a un hash  
+     * Méthode pour vérifier si un mot de passe est égale a un hache  
      *  
      * @param string : $password, mot de passe non haché (depuis un formulaire)
      * @param string : $hash, le mot de passe haché (depuis BD)
-     * @return bool  : vrai si concordance faux sinon
+     * @return bool  : vrai si concordance faut sinon
      * 
      *
      * Algorithme :

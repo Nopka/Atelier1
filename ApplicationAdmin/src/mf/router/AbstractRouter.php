@@ -18,7 +18,7 @@ abstract class AbstractRouter {
      * 
      */
     
-    static protected $routes = array ();
+    static public  $routes = array ();
 
     /* 
      * Attribut statique qui stocke les alias des routes
@@ -39,22 +39,6 @@ abstract class AbstractRouter {
     public function __construct(){
         $this->http_req = new \mf\utils\HttpRequest();
     }
-
-    public function __get($attr_name) {
-        if (property_exists( $this, $attr_name)) 
-            return $this->$attr_name;
-        $emess = __CLASS__ . ": unknown member $attr_name (__get)";
-        throw new \Exception($emess);
-    }
-    
-    public function __set($attr_name, $attr_val) {
-        if (property_exists( $this, $attr_name)) 
-            $this->$attr_name=$attr_val; 
-        else{
-            $emess = __CLASS__ . ": unknown member $attr_name (__set)";
-            throw new \Exception($emess);
-        }
-    }
     
     /*
      * Méthode run : execute une route en fonction de la requête 
@@ -64,7 +48,7 @@ abstract class AbstractRouter {
      * 
      * - l'URL de la route est stockée dans l'attribut $path_info de 
      *         $http_request
-     *   Et si une route existe dans le tableau $routes sous le nom $path_info
+     *   Et si une route existe dans le tableau $route sous le nom $path_info
      *     - créer une instance du controleur de la route
      *     - exécuter la méthode de la route 
      * - Sinon 
@@ -88,7 +72,7 @@ abstract class AbstractRouter {
      *
      * Algorthme:
      *  
-     * - Depuis le nom du script et l'URL stocké dans self::$aliases construire 
+     * - Depuis le nom du scripte et l'URL stocké dans self::$routes construire 
      *   l'URL complète 
      * - Si $param_list n'est pas vide 
      *      - Ajouter les paramètres GET a l'URL complète    
@@ -127,12 +111,12 @@ abstract class AbstractRouter {
      *
      * Algorithme :
      *
-     * - Ajouter le tablau [ $ctrl, $mth ] au tableau self::$routes 
+     * - Ajouter le tablau [ $ctrl, $mth ] au tableau self::$route 
      *   sous la clé $url
      * - Ajouter la chaîne $url au tableau self::$aliases sous la clé $name
      *
      */
 
-    abstract public function addRoute($name, $url, $ctrl, $method);
+    abstract public function addRoute($name, $url, $ctrl, $mth);
 
 }
