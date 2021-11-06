@@ -1,10 +1,4 @@
-Membre du groupe : 
-    Hittin Yann
-    Roussillon Hugo
-    Kezibri Hiba
-    Saci Alicia
-    
-    # Atelier: LeHangar.local
+# Atelier: LeHangar.local
 Mardi 2/11/2021 au Samedi 6/11/2021
 
 ## Sujet
