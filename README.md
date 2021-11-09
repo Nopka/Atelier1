@@ -42,7 +42,7 @@ LeHangar.local: commandes en ligne de produits de différentes catégories propo
 
 ## Spécification.
 Le backoffice est responsive pour la tablette et l'ordinateur comme demandé (realisé avec grille mixins).
-Le backoffice est responsive pour la tablette, l'ordinateur et le mobile (realisé avec css grid).
+La partie client est responsive pour la tablette, l'ordinateur et le mobile (realisé avec css grid).
 
 
 ## Git
